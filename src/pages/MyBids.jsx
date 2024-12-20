@@ -2,20 +2,19 @@ import { useEffect, useState } from "react";
 import useAuth from "../hooks/UseAuth";
 import axios from "axios";
 import BidTableRow from "../components/BidTableRow";
+import useAxiosSecure from "../hooks/useAxiosSecure";
 
 const MyBids = () => {
   const { user } = useAuth();
   const [bids, setBids] = useState([]);
+  const axiosSecure = useAxiosSecure();
 
   useEffect(() => {
     fetchAllJobs();
   }, []);
 
   const fetchAllJobs = async () => {
-    const { data } = await axios.get(
-      `${import.meta.env.VITE_API_URL}/bids/${user?.email}`,
-      { withCredentials: true }
-    );
+    const { data } = await axiosSecure.get(`/bids/${user?.email}`);
     setBids(data);
   };
   const handleStatusChange = async (id, prevStatus, status) => {
@@ -23,12 +22,9 @@ const MyBids = () => {
       console.log("not allowed");
     }
     try {
-      const { data } = await axios.patch(
-        `${import.meta.env.VITE_API_URL}/bid-status-updated/${id}`,
-        {
-          status,
-        }
-      );
+      const { data } = await axiosSecure.patch(`/bid-status-updated/${id}`, {
+        status,
+      });
       console.log(data);
       //refresh ui
       fetchAllJobs();
