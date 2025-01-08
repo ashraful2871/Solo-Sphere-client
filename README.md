@@ -6,7 +6,7 @@ A platform where anyone can post jobs, and anyone can apply for a job.
 
 ## 🌐 Live Site URL
 
-Visit the live site: [https://assignment-11-d815b.web.app/](https://assignment-11-d815b.web.app/)
+Visit the live site: [https://sholo-sharp.web.app/](https://sholo-sharp.web.app/)
 
 # 🚀 Feature
 
