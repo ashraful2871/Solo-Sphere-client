@@ -18,7 +18,7 @@ const useAxiosSecure = () => {
       },
       (err) => {
         console.log(`err caught in interceptor ${err.response}`);
-        if (err.response.status === 401 || refEqual.response.status === 403) {
+        if (err.response?.status === 401 || err.response?.status === 403) {
           //logout
           logOut();
           //navigate to login
